@@ -382,39 +382,346 @@ button{
   background:#e0f2fe;
   font-size:21px;
 }
+/* =========================
+   SLIDER CONTAINER
+========================= */
+.slider-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+}
+/* =========================
+   SLIDER
+========================= */
 
-.user-banner{
-  min-height:280px;
-  padding:45px 30px;
-  color:white;
-  display:flex;
-  align-items:center;
-  background:
-    linear-gradient(90deg,rgba(2,47,75,.02),rgba(2,47,75,.02)),
-    url("https://lh3.googleusercontent.com/Pjb1Zzx0mfBsLIHOOdXf9ZdfErwrLh3yyDwsL5vB0IQM2bnLu8S2I8ewrfxNSQZiXGx-4CgkqIRpRnI8dg=w1425")
-    center/cover;
+.slider {
+  width: 100%;
+  height: auto;
+  position: relative;
 }
 
-.banner-inner{
-  max-width:1100px;
-  width:100%;
-  margin:auto;
+
+/* =========================
+   SLIDE
+========================= */
+
+.slide {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: opacity 0.8s ease;
 }
 
-.banner-inner h1{
-  font-size:38px;
-  margin-bottom:10px;
+
+.slide.active {
+  opacity: 9;
+  visibility: visible;
 }
 
-.banner-inner p{
-  font-size:17px;
-  opacity:.95;
+
+/* =========================
+   IMAGE
+========================= */
+
+.slide img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+
+/* =========================
+   DARK OVERLAY
+========================= */
+
+.slide::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.72),
+    rgba(0, 0, 0, 0.25),
+    rgba(0, 0, 0, 0.05)
+  );
+}
+
+
+/* =========================
+   SLIDE TEXT
+========================= */
+
+.slide-content {
+  position: absolute;
+
+  z-index: 2;
+
+  top: 50%;
+  left: 7%;
+
+  transform: translateY(-50%);
+
+  color: white;
+
+  max-width: 650px;
+}
+
+
+.slide-content h1 {
+  font-size: 45px;
+
+  margin: 0 0 12px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+
+.slide-content p {
+  font-size: 19px;
+
+  margin: 0 0 25px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.slider-btn {
+  display: inline-block;
+
+  padding: 25px;
+
+  background: #00a99d;
+
+  color: white;
+
+  text-decoration: none;
+
+  border-radius: 30px;
+
+  font-weight: 600;
+
+  transition: 0.3s;
+}
+
+
+.slider-btn:hover {
+  background: #007f77;
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================
+   PREVIOUS / NEXT
+========================= */
+
+.prev,
+.next {
+  position: absolute;
+
+  z-index: 5;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 45px;
+  height: 45px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  color: white;
+
+  font-size: 25px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+
+.prev {
+  left: 15px;
+}
+
+
+.next {
+  right: 15px;
+}
+
+
+.prev:hover,
+.next:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+
+/* =========================
+   DOTS
+========================= */
+
+.dots {
+  position: absolute;
+
+  z-index: 5;
+
+  bottom: 18px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+
+  gap: 8px;
+}
+
+
+.dot {
+  width: 11px;
+  height: 11px;
+
+  background: rgba(255, 255, 255, 0.6);
+
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+
+.dot.active-dot {
+  width: 28px;
+
+  border-radius: 10px;
+
+  background: white;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+  .slider-container {
+    margin: 10px;
+
+    width: calc(100% - 20px);
+
+    border-radius: 12px;
+  }
+
+
+  .slider {
+    height: 250px;
+  }
+
+
+  .slide-content {
+    left: 25px;
+    right: 25px;
+  }
+
+
+  .slide-content h1 {
+    font-size: 26px;
+  }
+
+
+  .slide-content p {
+    font-size: 14px;
+
+    margin-bottom: 15px;
+  }
+
+
+  .slider-btn {
+    padding: 9px 18px;
+
+    font-size: 13px;
+  }
+
+
+  .prev,
+  .next {
+    width: 35px;
+    height: 35px;
+
+    font-size: 18px;
+  }
+
+
+  .prev {
+    left: 8px;
+  }
+
+
+  .next {
+    right: 8px;
+  }
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width:100%) {
+
+  .slider {
+    height: 210px;
+  }
+
+
+  .slide-content h1 {
+    font-size: 21px;
+  }
+
+
+  .slide-content p {
+    font-size: 12px;
+  }
+
+
+  .slider-btn {
+    padding: 7px 14px;
+
+    font-size: 12px;
+  }
 }
 
 .dashboard-container{
-  max-width:1200px;
+  max-width:100%;
   margin:auto;
-  padding:30px 20px 60px;
+ 
 }
 
 .section-title{
@@ -1941,22 +2248,68 @@ th{
 
   <!-- USER BANNER -->
 
-  <div class="user-banner">
 
-    <div class="banner-inner">
+  <!-- ===== SLIDER BANNER ===== -->
+  <section class="slider-container">
 
-      <h1 id="welcomeUser">
-        Welcome
-      </h1>
+    <div class="slider">
 
-      <p id="welcomeOffice">
-        আপনার Dashboard
-      </p>
+      <!-- Slide 1 -->
+      <div class="slide active">
+        <img src="https://lh3.googleusercontent.com/p/AF1QipPFA0Tuu9ffla99leaOOAqqD-jIZ_UHXO_o0FWR=s1360-w1360-h1020-rw" alt="JANA ONLINE SERVICE">
+
+        <div class="slide-content">
+          <h1>JANA ONLINE SERVICE</h1>
+          <p>আপনার সকল অনলাইন পরিষেবা এক জায়গায়</p>
+          <a href="#" class="slider-btn">View Services</a>
+        </div>
+      </div>
+
+
+      <!-- Slide 2 -->
+      <div class="slide">
+        <img src="https://lh3.googleusercontent.com/p/AF1QipOF0dU5inO7w1rx4p5e3MD_FrHN9nFAJ7FlISvH=s1360-w1360-h1020-rw" alt="Digital Service">
+
+        <div class="slide-content">
+          <h1>Digital Service</h1>
+          <p>Online Form • PAN Card • Voter Card • অন্যান্য পরিষেবা</p>
+          <a href="#" class="slider-btn">Get Service</a>
+        </div>
+      </div>
+
+
+      <!-- Slide 3 -->
+      <div class="slide">
+        <img src="https://lh3.googleusercontent.com/p/AF1QipOF0dU5inO7w1rx4p5e3MD_FrHN9nFAJ7FlISvH=s1360-w1360-h1020-rw" alt="24x7 Online Service">
+
+        <div class="slide-content">
+          <h1>24×7 ONLINE SERVICE</h1>
+          <p>দ্রুত ও সহজ অনলাইন পরিষেবা</p>
+          <a href="#" class="slider-btn">Contact Us</a>
+        </div>
+      </div>
 
     </div>
 
-  </div>
 
+    <!-- Previous Button -->
+    <button class="prev">&#10094;</button>
+
+    <!-- Next Button -->
+    <button class="next">&#10095;</button>
+
+
+    <!-- Dots -->
+    <div class="dots">
+      <span class="dot active-dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+
+  </section>
+
+
+ 
 
   <!-- NOTICE -->
 
@@ -6027,10 +6380,113 @@ if ("serviceWorker" in navigator) {
 
 }
 
+  // =========================
+// SLIDER JAVASCRIPT
+// =========================
+
+let currentSlide = 0;
+
+const slides = document.querySelectorAll(".slide");
+
+const dots = document.querySelectorAll(".dot");
+
+const nextButton = document.querySelector(".next");
+
+const prevButton = document.querySelector(".prev");
+
+
+// =========================
+// SHOW SLIDE
+// =========================
+
+function showSlide(index) {
+
+  // যদি শেষ slide পার হয়ে যায়
+  if (index >= slides.length) {
+    currentSlide = 0;
+  }
+
+  // যদি প্রথম slide-এর আগে যায়
+  else if (index < 0) {
+    currentSlide = slides.length - 1;
+  }
+
+  else {
+    currentSlide = index;
+  }
+
+
+  // সব slide hide
+  slides.forEach(function(slide) {
+    slide.classList.remove("active");
+  });
+
+
+  // সব dot inactive
+  dots.forEach(function(dot) {
+    dot.classList.remove("active-dot");
+  });
+
+
+  // Current slide active
+  slides[currentSlide].classList.add("active");
+
+
+  // Current dot active
+  dots[currentSlide].classList.add("active-dot");
+}
+
+
+// =========================
+// NEXT BUTTON
+// =========================
+
+nextButton.addEventListener("click", function() {
+
+  showSlide(currentSlide + 1);
+
+});
+
+
+// =========================
+// PREVIOUS BUTTON
+// =========================
+
+prevButton.addEventListener("click", function() {
+
+  showSlide(currentSlide - 1);
+
+});
+
+
+// =========================
+// DOT CLICK
+// =========================
+
+dots.forEach(function(dot, index) {
+
+  dot.addEventListener("click", function() {
+
+    showSlide(index);
+
+  });
+
+});
+
+
+// =========================
+// AUTO SLIDER
+// প্রতি 4 সেকেন্ডে slide change
+// =========================
+
+setInterval(function() {
+
+  showSlide(currentSlide + 1);
+
+}, 4000);
+  
 </script>
 
 
-</body>
-</html>
 </body>
 </html>
